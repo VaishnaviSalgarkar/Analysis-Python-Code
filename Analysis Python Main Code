@@ -1,0 +1,45 @@
+mkdir analysis_project
+cd analysis_project
+git init
+
+touch data.csv
+echo "customer_id,name,age,city,country,purchase_amount" > data.csv
+echo "1,John Doe,30,New York,USA,100" >> data.csv
+echo "2,Jane Smith,25,London,UK,150" >> data.csv
+echo "3,David Lee,40,Paris,France,80" >> data.csv
+echo "4,Maria Garcia,35,Madrid,Spain,120" >> data.csv
+echo "5,Peter Jones,28,Berlin,Germany,90" >> data.csv
+
+touch customer_analysis.sql
+echo "-- Query 1: Total customers per country" >> customer_analysis.sql
+echo "SELECT country, COUNT(*) AS customer_count" >> customer_analysis.sql
+echo "FROM customers" >> customer_analysis.sql
+echo "GROUP BY country;" >> customer_analysis.sql
+echo "" >> customer_analysis.sql
+echo "-- Query 2: Average purchase amount per city" >> customer_analysis.sql
+echo "SELECT city, AVG(purchase_amount) AS avg_purchase" >> customer_analysis.sql
+echo "FROM customers" >> customer_analysis.sql
+echo "GROUP BY city;" >> customer_analysis.sql
+echo "" >> customer_analysis.sql
+echo "-- Query 3: Top 3 customers by purchase amount" >> customer_analysis.sql
+echo "SELECT name, purchase_amount" >> customer_analysis.sql
+echo "FROM customers" >> customer_analysis.sql
+echo "ORDER BY purchase_amount DESC" >> customer_analysis.sql
+echo "LIMIT 3;" >> customer_analysis.sql
+
+touch analyze_data.py
+echo "import pandas as pd" > analyze_data.py
+echo "" >> analyze_data.py
+echo "# Load data from CSV" >> analyze_data.py
+echo "df = pd.read_csv('data.csv')" >> analyze_data.py
+echo "" >> analyze_data.py
+echo "# Perform analysis (example: calculate total purchases)" >> analyze_data.py
+echo "total_purchases = df['purchase_amount'].sum()" >> analyze_data.py
+echo "print(f\"Total Purchases: {total_purchases}\")" >> analyze_data.py
+
+git add .
+git commit -m "Initial commit with data, SQL, and Python script" 
+
+# (Optional: Create GitHub repository and push)
+# git remote add origin <your_repository_url>
+# git push -u origin master
